@@ -12,11 +12,23 @@ import Success from './pages/Success.jsx';
 import Cancel from './pages/Cancel.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
+import Faq from './pages/Faq.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      // wait a tick for the target section to mount, then scroll to it
+      const id = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo(0, 0);
+      }, 60);
+      return () => clearTimeout(id);
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
   return null;
 }
 
@@ -39,6 +51,7 @@ export default function App() {
             <Route path="/checkout/cancel" element={<Cancel />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

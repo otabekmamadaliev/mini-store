@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Social = {
@@ -10,7 +11,16 @@ function SocialIcon({ name }) {
   return <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{Social[name]}</svg>;
 }
 
+const SOCIALS = [
+  { name: 'facebook', label: 'Facebook', url: 'https://facebook.com' },
+  { name: 'instagram', label: 'Instagram', url: 'https://instagram.com' },
+  { name: 'youtube', label: 'YouTube', url: 'https://youtube.com' },
+  { name: 'x', label: 'X', url: 'https://x.com' },
+];
+
 export default function Footer() {
+  const [subscribed, setSubscribed] = useState(false);
+
   return (
     <footer className="footer">
       <div className="wrap">
@@ -22,10 +32,11 @@ export default function Footer() {
             </div>
             <p>Everything you need, delivered to your door.</p>
             <div className="socials" aria-label="Social links">
-              <a href="#" aria-label="Facebook"><SocialIcon name="facebook" /></a>
-              <a href="#" aria-label="Instagram"><SocialIcon name="instagram" /></a>
-              <a href="#" aria-label="YouTube"><SocialIcon name="youtube" /></a>
-              <a href="#" aria-label="X"><SocialIcon name="x" /></a>
+              {SOCIALS.map((s) => (
+                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                  <SocialIcon name={s.name} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -39,28 +50,34 @@ export default function Footer() {
 
           <div className="foot-col">
             <h5>Customer Care</h5>
-            <a href="#">FAQs</a>
-            <a href="#">Shipping Policy</a>
-            <a href="#">Returns &amp; Refunds</a>
-            <a href="#">Track Order</a>
+            <Link to="/faq">FAQs</Link>
+            <Link to="/faq#shipping">Shipping Policy</Link>
+            <Link to="/faq#returns">Returns &amp; Refunds</Link>
+            <Link to="/faq#tracking">Track Order</Link>
           </div>
 
           <div className="foot-col foot-news">
             <h5>Stay Updated</h5>
-            <p>Subscribe to get updates and offers.</p>
-            <form className="news" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Your Email" aria-label="Email address" required />
-              <button type="submit" aria-label="Subscribe">→</button>
-            </form>
+            {subscribed ? (
+              <p className="news-done">✓ Thanks — you’re subscribed!</p>
+            ) : (
+              <>
+                <p>Subscribe to get updates and offers.</p>
+                <form className="news" onSubmit={(e) => { e.preventDefault(); setSubscribed(true); }}>
+                  <input type="email" placeholder="Your Email" aria-label="Email address" required />
+                  <button type="submit" aria-label="Subscribe">→</button>
+                </form>
+              </>
+            )}
           </div>
         </div>
 
         <div className="foot-bot">
           <span>© {new Date().getFullYear()} MiniStore. All rights reserved.</span>
           <span className="foot-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Support</a>
+            <Link to="/faq#legal">Privacy</Link>
+            <Link to="/faq#legal">Terms</Link>
+            <Link to="/contact">Support</Link>
           </span>
         </div>
       </div>
