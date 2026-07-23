@@ -232,6 +232,48 @@ textarea.field{resize:vertical;min-height:110px}
 .contact-sent-ic{width:64px;height:64px;background:var(--green);color:#fff;border-radius:50%;display:grid;place-items:center;
   font-size:30px;margin:0 auto 16px}
 
+/* ===================== HELP CENTER / FAQ ===================== */
+.faq-page{padding:44px 0 20px}
+.faq-page section[id]{scroll-margin-top:96px}
+.faq-nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0 44px}
+.faq-nav a{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-size:13.5px;font-weight:500;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:100px;padding:9px 16px;transition:.2s}
+.faq-nav a:hover{border-color:var(--green);color:var(--green)}
+.faq-nav a svg{color:var(--green)}
+.faq-section{max-width:760px;margin:0 auto 48px}
+.faq-section h2,.faq-track h2{font-size:clamp(24px,3vw,32px);font-weight:800;margin-bottom:22px;text-align:center}
+.acc-list{display:flex;flex-direction:column;gap:12px}
+.acc{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .2s}
+.acc.open{border-color:var(--green-l)}
+.acc-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;
+  padding:18px 22px;font-family:var(--head);font-weight:600;font-size:15.5px;text-align:left;color:var(--ink)}
+.acc-chev{color:var(--soft);transition:transform .25s;flex-shrink:0}
+.acc.open .acc-chev{transform:rotate(180deg);color:var(--green)}
+.acc-a{padding:0 22px 18px}
+.acc-a p{color:var(--soft);font-size:14.5px;line-height:1.65}
+.faq-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto 20px}
+.faq-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+.faq-card-ic{width:48px;height:48px;background:var(--green-l);color:var(--green);border-radius:13px;display:grid;place-items:center;margin-bottom:14px}
+.faq-card h3{font-size:18px;margin-bottom:8px}
+.faq-track{max-width:640px;margin:48px auto;text-align:center}
+.faq-track .muted{margin-bottom:18px}
+.track-form{display:flex;gap:10px;max-width:440px;margin:0 auto}
+.track-form .field{margin-top:0}
+.track-form .btn{white-space:nowrap}
+.track-result{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:left}
+.track-head{font-size:15px;margin-bottom:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.track-steps{display:flex;flex-direction:column;gap:0}
+.track-step{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--soft);padding:8px 0;position:relative}
+.track-step .track-dot{width:14px;height:14px;border-radius:50%;background:var(--line);flex-shrink:0;position:relative;z-index:1}
+.track-step:not(:last-child)::after{content:"";position:absolute;left:6px;top:22px;bottom:-8px;width:2px;background:var(--line)}
+.track-step.done{color:var(--ink);font-weight:500}
+.track-step.done .track-dot{background:var(--green)}
+.track-step.done:not(:last-child)::after{background:var(--green)}
+.track-eta{margin-top:16px;font-size:13px}
+.faq-contact-cta{text-align:center;padding:40px 0 20px}
+.faq-contact-cta p{color:var(--soft);margin-bottom:16px}
+.news-done{color:#eaf1e6;font-family:var(--head);font-weight:600;font-size:14.5px}
+
 /* ===================== 404 / cancel ===================== */
 .notfound-code{font-family:var(--head);font-size:90px;font-weight:800;color:var(--green-l);line-height:1}
 .notfound-cta,.cancel-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:8px}
@@ -250,6 +292,7 @@ textarea.field{resize:vertical;min-height:110px}
   .about-stats{grid-template-columns:1fr 1fr}
   .values-grid{grid-template-columns:1fr}
   .pd-meta{grid-template-columns:1fr}
+  .faq-cards{grid-template-columns:1fr}
 }
 @media(max-width:560px){
   .feats,.cat-grid,.pgrid{grid-template-columns:1fr}
