@@ -1,0 +1,84 @@
+/* ===== MiniStore design system ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --green:#2f6b3d; --green-d:#24522f; --green-l:#eaf1e6; --green-mid:#3f8a4d;
+  --cream:#f4f3ec; --cream-2:#eeede4; --card:#ffffff; --ink:#1b2620; --soft:#6c7269;
+  --line:#e6e4d8; --danger:#c0392b; --amber:#b98a3e;
+  --head:'Poppins',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif;
+  --shadow-sm:0 8px 24px -16px rgba(20,40,28,.4);
+  --shadow:0 20px 50px -30px rgba(20,40,28,.35);
+  --shadow-lg:0 40px 80px -40px rgba(20,40,28,.45);
+  --radius:16px; --wrap:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+#root{min-height:100svh;display:flex;flex-direction:column}
+h1,h2,h3,h4,h5{font-family:var(--head);line-height:1.14;font-weight:700;color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--green);outline-offset:2px;border-radius:6px}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;width:100%}
+.page{min-height:60vh}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--head);font-weight:600;font-size:14.5px;padding:13px 26px;
+  border-radius:10px;border:none;transition:transform .2s,background .2s,box-shadow .2s;white-space:nowrap}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 14px 26px -14px rgba(47,107,61,.6)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.btn-lg{padding:15px 32px;font-size:15.5px}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-block{width:100%}
+
+/* generic bits */
+.eyebrow{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--green)}
+.section{padding:72px 0}
+.center{text-align:center}
+.muted{color:var(--soft)}
+.pill{display:inline-block;background:var(--green-l);color:var(--green);font-family:var(--head);
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:100px}
+
+/* skeleton loading */
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.skeleton{background:linear-gradient(90deg,var(--cream-2) 25%,#f6f5ef 50%,var(--cream-2) 75%);
+  background-size:800px 100%;animation:shimmer 1.3s infinite linear;border-radius:8px}
+
+/* CSS-driven entrance reveals — resting state is always visible, so content never
+   depends on JS to appear (safe for reduced-motion users and non-compositing views). */
+@keyframes revealUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.reveal{animation:revealUp .55s cubic-bezier(.16,1,.3,1) both}
+.reveal-d1{animation-delay:.08s}.reveal-d2{animation-delay:.16s}.reveal-d3{animation-delay:.24s}
+.reveal-d4{animation-delay:.32s}.reveal-d5{animation-delay:.40s}.reveal-d6{animation-delay:.48s}
+.pop{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both}
+/* subtle page-transition fade on route change */
+@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.route-fade{animation:pageIn .34s ease}
+/* stagger children of a grid */
+.stagger > *{animation:revealUp .5s cubic-bezier(.16,1,.3,1) both}
+.stagger > *:nth-child(1){animation-delay:.04s}
+.stagger > *:nth-child(2){animation-delay:.10s}
+.stagger > *:nth-child(3){animation-delay:.16s}
+.stagger > *:nth-child(4){animation-delay:.22s}
+.stagger > *:nth-child(5){animation-delay:.28s}
+.stagger > *:nth-child(6){animation-delay:.34s}
+.stagger > *:nth-child(7){animation-delay:.40s}
+.stagger > *:nth-child(8){animation-delay:.46s}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-delay:0ms !important;
+    transition-duration:.001ms !important;transition-delay:0ms !important}
+  html{scroll-behavior:auto}
+}
