@@ -60,7 +60,7 @@ All product and lifestyle photos are royalty-free from [Unsplash](https://unspla
 ### Household
 | Product | Photographer |
 |---|---|
-| Paper Towels | [Compagnons / Sigmund](https://unsplash.com/@sigmund) |
+| Paper Towels | [visuals](https://unsplash.com/@visuals) |
 | Toilet Paper | [Christine Sandu](https://unsplash.com/@lenscapewithme) |
 | Dish Soap | [Karolina De Costa](https://unsplash.com/@rowespurling) |
 | Scrub Sponges | [Çağlar Oskay](https://unsplash.com/@oskaycaglar) |
