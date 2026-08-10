@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Truck, ShieldCheck, BadgeCheck, Headphones, Cookie, CupSoda, Bath, SprayCan } from 'lucide-react';
+import { Truck, ShieldCheck, BadgeCheck, Headphones, Cookie, CupSoda, Bath, SprayCan, Wheat, ShoppingBasket } from 'lucide-react';
 import HeroBasket from '../components/HeroBasket.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import { PRODUCTS, CATEGORIES } from '../data/products.js';
@@ -11,7 +11,10 @@ const FEATURES = [
   { Icon: Headphones, title: 'Customer Support', sub: "We're Here to Help" },
 ];
 
-const CAT_ICON = { Snacks: Cookie, Beverages: CupSoda, 'Personal Care': Bath, Household: SprayCan };
+const CAT_ICON = { Snacks: Cookie, Beverages: CupSoda, Pantry: Wheat, 'Personal Care': Bath, Household: SprayCan };
+// Fallback so adding a category to CATEGORIES without an icon here degrades to a
+// generic one instead of rendering `undefined` and taking down the whole page.
+const FALLBACK_CAT_ICON = ShoppingBasket;
 
 export default function Home() {
   const popular = PRODUCTS.slice(0, 4);
@@ -64,7 +67,7 @@ export default function Home() {
           </div>
           <div className="cat-grid stagger">
             {cats.map((cat) => {
-              const Ic = CAT_ICON[cat];
+              const Ic = CAT_ICON[cat] ?? FALLBACK_CAT_ICON;
               return (
                 <Link key={cat} to={`/shop?category=${encodeURIComponent(cat)}`} className="cat-card">
                   <span className="cat-ic" aria-hidden="true"><Ic size={30} /></span>
